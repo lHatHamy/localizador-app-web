@@ -72,11 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (record.status === 'en recepción') {
                              actionsCellContent += `<button class="btn btn-success btn-sm me-2 confirmar-recepcion-btn" data-id="${record.id}">Confirmar Recepción</button>`;
                         }
+                        actionsCellContent += `<button class="btn btn-primary btn-sm me-2 ver-mapa-btn" data-bs-toggle="modal" data-bs-target="#mapModal" data-map-url="${record.map_image}">Estado antes de entrega</button>`;
                         actionsCellContent += `<button class="btn btn-danger btn-sm invalidar-btn" data-id="${record.id}">Invalidar</button>`;
                     }
 
                     // Dependiendo de la página, muestra diferentes datos
                     if (tableBody.id === 'registrosTableBody') {
+                        const mapImageContent = record.map_image ? `<img src="${record.map_image}" alt="Mapa de ubicación" style="max-width: 100px; max-height: 100px;">` : 'N/A';
                         row.innerHTML = `
                             <td>${record.device_id || 'N/A'}</td>
                             <td>${record.cae || 'N/A'}</td>
@@ -84,12 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${record.package_number || 'N/A'}</td>
                             <td>${record.status || 'N/A'}</td>
                             <td>${record.adress || 'N/A'}</td>
+                            <td>${mapImageContent}</td>
                         `;
                     } else if (tableBody.id === 'controlTableBody') {
                         row.innerHTML = `
                             <td>${record.id || 'N/A'}</td>
                             <td>${record.cae || 'N/A'}</td>
-                            <td>${record.electoral_zone || 'N/A'}</td>
                             <td>${record.package_number || 'N/A'}</td>
                             <td>${record.status || 'N/A'}</td>
                             <td>${record.adress || 'N/A'}</td>
@@ -154,6 +156,18 @@ document.addEventListener('DOMContentLoaded', () => {
                                     showAlert('Contraseña incorrecta. Operación cancelada.', 'warning', alertContainer);
                                 }
                             }
+                        });
+                    });
+
+                    // Lógica para mostrar la imagen del mapa en el modal
+                    document.querySelectorAll('.ver-mapa-btn').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            const mapUrl = e.target.dataset.mapUrl;
+                            const modalImage = document.getElementById('mapImage');
+                            const modalTitle = document.getElementById('mapModalLabel');
+                            
+                            modalTitle.textContent = 'Estado antes de entrega';
+                            modalImage.src = mapUrl;
                         });
                     });
                 }
