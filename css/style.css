@@ -1,0 +1,123 @@
+/* Colores de la paleta */
+:root {
+    --rosa-mexicano: #E74D9F;
+    --morado: #4F2C7F;
+    --gris-claro: #F5F5F5;
+    --blanco: #FFFFFF;
+    --negro: #000000;
+
+    /* Colores para estados de la tabla */
+    --color-en-recorrido: #FFFF00;
+    --color-vulnerado: #FF0000;
+    --color-en-recepcion: #9370DB;
+    --color-recibido: #008000;
+}
+
+/* Estilos para el body y main */
+body {
+    background-color: var(--blanco);
+    color: var(--negro);
+}
+
+main {
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header y Navbar */
+.bg-primary {
+    background-color: var(--rosa-mexicano) !important;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: var(--blanco) !important;
+}
+
+.navbar-nav .nav-link.active {
+    background-color: var(--morado);
+    border-radius: 5px;
+    padding: 0.5rem 1rem !important;
+    color: var(--blanco) !important;
+}
+
+.navbar-brand .fs-4 {
+    color: var(--blanco);
+}
+
+/* Botones */
+.btn-primary {
+    background-color: var(--rosa-mexicano);
+    border-color: var(--rosa-mexicano);
+}
+.btn-primary:hover {
+    background-color: #d13a8e; /* Un tono más oscuro */
+    border-color: #d13a8e;
+}
+
+.btn-secondary {
+    background-color: var(--gris-claro);
+    color: var(--negro);
+    border-color: var(--gris-claro);
+}
+
+/* Secciones de contenido */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.card h1 {
+    color: var(--rosa-mexicano);
+}
+
+section {
+    background-color: var(--gris-claro);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.table thead {
+    background-color: var(--rosa-mexicano);
+    color: var(--blanco);
+}
+
+/* Estilos de color para filas de tabla según el estado */
+.estado-inactivo {
+    background-color: transparent !important;
+    color: inherit;
+}
+
+.estado-en-recorrido {
+    background-color: var(--color-en-recorrido) !important;
+    color: #000000;
+}
+
+.estado-vulnerado {
+    background-color: var(--color-vulnerado) !important;
+    color: #FFFFFF;
+}
+
+.estado-en-recepcion {
+    background-color: var(--color-en-recepcion) !important;
+    color: #FFFFFF;
+}
+
+.estado-recibido {
+    background-color: var(--color-recibido) !important;
+    color: #FFFFFF;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: var(--blanco);
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+    background-color: var(--gris-claro);
+}
+
+.bg-dark {
+    background-color: var(--negro) !important;
+}
