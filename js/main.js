@@ -23,6 +23,32 @@ document.addEventListener('DOMContentLoaded', () => {
         container.innerHTML = '';
         container.appendChild(alertDiv);
     };
+    
+    // Función para devolver estado con ícono
+    const getStatusWithIcon = (status) => {
+        let icon = '';
+        switch (status?.toLowerCase()) {
+            case 'recibido':
+                icon = '<i class="fas fa-check-circle text-success"></i>'; // Paloma verde
+                break;
+            case 'en recorrido':
+                icon = '<i class="fas fa-truck text-primary"></i>'; // Camión azul
+                break;
+            case 'en recepción':
+                icon = '<i class="fas fa-inbox text-warning"></i>'; // Caja amarilla
+                break;
+            case 'vulnerado':
+                icon = '<i class="fas fa-triangle-exclamation text-danger"></i>'; // Alerta roja
+                break;
+            case 'inactivo':
+                icon = '<i class="fas fa-ban text-secondary"></i>'; // Inactivo gris
+                break;
+            default:
+                icon = '<i class="fas fa-question-circle text-muted"></i>'; // Desconocido
+                break;
+        }
+        return `${icon} ${status || 'N/A'}`;
+    };
 
     // Función para obtener y mostrar los últimos registros
     const fetchAndDisplayRecords = async (limit, tableBody) => {
@@ -84,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${record.cae || 'N/A'}</td>
                             <td>${record.electoral_zone || 'N/A'}</td>
                             <td>${record.package_number || 'N/A'}</td>
-                            <td>${record.status || 'N/A'}</td>
+                            <td>${getStatusWithIcon(record.status)}</td>
                             <td>${record.adress || 'N/A'}</td>
                             <td>${mapImageContent}</td>
                         `;
@@ -93,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td>${record.id || 'N/A'}</td>
                             <td>${record.cae || 'N/A'}</td>
                             <td>${record.package_number || 'N/A'}</td>
-                            <td>${record.status || 'N/A'}</td>
+                            <td>${getStatusWithIcon(record.status)}</td>
                             <td>${record.adress || 'N/A'}</td>
                             <td>${new Date(record.date).toLocaleDateString()}</td>
                             <td>${actionsCellContent}</td>
